@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Posts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 style="text-align:center" >Posts</h1>
+    <p style="text-align:center; margin-top: 15px" >
+        <a class="add-post-link" href="/create">Add Post</a>
+    </p>
+    <div >
+       {{#each posts}}
+            <div class="content-container">             
+                {{this.title}}
+                {{this.description}}
+                {{this.markdown}}                  
+               <td>
+                    <a class="edit-link" href="/edit/{{this.id}}">Edit</a>|
+                    <form action="delete/{{this.id}}" method="POST" style="display:inline;">
+                        <button class="delete-button" type="submit">Delete</button>
+                    </form>
+               </td>              
+            </div>
+        {{/each}}
+    </div>
+</body>
+<html>

@@ -1,0 +1,92 @@
+/* default styles*/
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #15202b;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* create-post-styles */
+.post-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.post-h1 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.post-title {
+  width: 1111px;
+  background-color: white;
+  color: black;
+  margin-bottom: 15px;
+  height: 33px;
+  font-size: 17px;
+}
+
+.post-description {
+  width: 1111px;
+  background-color: white;
+  color: black;
+  margin-bottom: 15px;
+  height: 77px;
+  font-size: 17px;
+}
+
+.post-markdown {
+  width: 1111px;
+  background-color: white;
+  color: black;
+  margin-bottom: 15px;
+  height: 555px;
+  font-size: 17px;
+}
+
+.post-save {
+  width: 55px;
+  background-color: rgb(0, 119, 255);
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.post-cansel {
+  width: 55px;
+  background-color: rgb(102, 102, 100);
+  font-size: 17px;
+  cursor: pointer;
+}
+
+/*content-container-styles*/
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 19px;
+}
+
+.edit-link {
+  margin-left: 11px;
+  background-color: rgb(7, 91, 160);
+}
+
+.delete-button {
+  background-color: red;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.add-post-link {
+  margin-top: 15px;
+  text-align: center;
+  background-color: rgb(7, 177, 92);
+}
+
