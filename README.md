@@ -1,1 +1,1 @@
-# it usta demo version
+# it-usta demo version
