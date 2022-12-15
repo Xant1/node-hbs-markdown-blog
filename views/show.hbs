@@ -1,0 +1,23 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Show-Post</title>
+    
+  </head>
+  <body>
+    <div class='container'>
+      {{#each post}}
+        <div class='content-container'>
+          <h1>{{this.title}}</h1>
+          {{this.markdown}}
+        </div>
+        <td>
+          <a class='all-posts' href='/'>All posts</a>
+          <a class='edit-link' href='/edit/{{this.id}}'>Edit</a>|
+        </td>
+      {{/each}}
+    </div>
+  </body>
+</html>

@@ -68,6 +68,7 @@ a {
 /*content-container-styles*/
 .content-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 19px;
@@ -76,6 +77,11 @@ a {
 .edit-link {
   margin-left: 11px;
   background-color: rgb(7, 91, 160);
+}
+
+.read-more {
+  margin-left: 11px;
+  background-color: rgb(150, 187, 17);
 }
 
 .delete-button {
@@ -90,3 +96,6 @@ a {
   background-color: rgb(7, 177, 92);
 }
 
+.all-posts{
+  background-color: rgb(114, 113, 113);
+}

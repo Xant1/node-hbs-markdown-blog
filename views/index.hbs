@@ -10,19 +10,20 @@
     <p style="text-align:center; margin-top: 15px" >
         <a class="add-post-link" href="/create">Add Post</a>
     </p>
-    <div >
+    <div>
        {{#each posts}}
-            <div class="content-container">             
-                {{this.title}}
-                {{this.description}}
-                {{this.markdown}}                  
-               <td>
+            <div>
+                <div class="content-container">             
+                    {{this.title}}
+                    {{this.description}}
+                </div>               
+                <td><a class="read-more" href="/post/{{this.id}}">read more</a>
                     <a class="edit-link" href="/edit/{{this.id}}">Edit</a>|
                     <form action="delete/{{this.id}}" method="POST" style="display:inline;">
                         <button class="delete-button" type="submit">Delete</button>
                     </form>
-               </td>              
-            </div>
+                </td>        
+            </div>                             
         {{/each}}
     </div>
 </body>
