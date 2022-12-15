@@ -4,9 +4,7 @@ exports.getEditPage = function (req, res) {
   const postid = req.params.id;
   Post.findAll({ where: { id: postid }, raw: true })
     .then((data) => {
-      res.render('edit.hbs', {
-        post: data[0],
-      });
+      res.render('edit.hbs', { post: data[0] });
     })
     .catch((err) => console.log(err));
 };

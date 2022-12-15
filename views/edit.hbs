@@ -8,13 +8,13 @@
     <h1 class="post-h1">Editing</h1>
      <form action="/edit" method="POST">
         <div class="post-container">
-            <input class="hidden-id" type="hidden" name="id" value="{{post.id}}" />
+            <input required class="hidden-id" type="hidden" name="id" value="{{post.id}}" />
             <label>Title</label>
-            <input name="title" class="post-title"/>
+            <input name="title" class="post-title" value="{{post.title}}" />
             <label>Description</label>
-            <textarea name="description"  class="post-description"></textarea>
+            <textarea required name="description"  class="post-description">{{post.description}}</textarea>
             <label>Markdown</label>
-            <textarea name="markdown"  class="post-markdown"  ></textarea>
+            <textarea required name="markdown"  class="post-markdown">{{post.markdown}}</textarea>
             <button class="post-save" type="submit">Save</button>
             <button class="post-cansel"><a class="post-cansel" href="/">Cansel</a></button> 
         </div>

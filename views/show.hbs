@@ -4,20 +4,17 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Show-Post</title>
-    
+    <link rel='stylesheet' href='/style.css' />
   </head>
   <body>
     <div class='container'>
-      {{#each post}}
-        <div class='content-container'>
-          <h1>{{this.title}}</h1>
-          {{this.markdown}}
-        </div>
-        <td>
-          <a class='all-posts' href='/'>All posts</a>
-          <a class='edit-link' href='/edit/{{this.id}}'>Edit</a>|
-        </td>
-      {{/each}}
+      <div class='content'>
+        <h1 class='content-h1'>{{post.title}}</h1>
+        {{post.markdown}}
+      </div>
+    </div>
+    <div class='content-links'>
+      <a class='all-posts' href='/'>All posts</a>
     </div>
   </body>
 </html>

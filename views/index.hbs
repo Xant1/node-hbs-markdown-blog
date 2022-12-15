@@ -13,16 +13,18 @@
     <div>
        {{#each posts}}
             <div>
-                <div class="content-container">             
+                <a href="/post/{{this.id}}">
+                    <div class="container">             
                     {{this.title}}
                     {{this.description}}
-                </div>               
-                <td><a class="read-more" href="/post/{{this.id}}">read more</a>
+                    <td>
                     <a class="edit-link" href="/edit/{{this.id}}">Edit</a>|
                     <form action="delete/{{this.id}}" method="POST" style="display:inline;">
                         <button class="delete-button" type="submit">Delete</button>
                     </form>
-                </td>        
+                    </td>  
+                    </div> 
+                </a>                                                   
             </div>                             
         {{/each}}
     </div>
