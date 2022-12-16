@@ -4,4 +4,5 @@ const indexRouter = express.Router();
 
 indexRouter.use('/', indexController.getAllPosts);
 
+
 module.exports = indexRouter;

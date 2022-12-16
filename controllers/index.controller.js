@@ -9,3 +9,12 @@ exports.getAllPosts = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
+
+exports.getPost = function (req, res) {
+  const post = Post.findOne({ where: { id: req.params.id } })
+    .then((data) => {
+      if (!data) res.redirect('/');
+      res.render('show.hbs', { post: data });
+    })
+    .catch((err) => console.log(err));
+};
