@@ -1,1 +1,1 @@
-- it-usta demo version
+- KZ it portal demo version
