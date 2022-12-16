@@ -1,1 +1,1 @@
-- it-usta demo versia atauy
+- it-usta demo version
