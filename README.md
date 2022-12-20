@@ -1,1 +1,1 @@
-- KZ it portal demo version
+- KZ it portal 
