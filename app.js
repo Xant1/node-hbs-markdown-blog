@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const urlencodedParser = express.urlencoded({ extended: false });
 const PORT = 7777;
-const {marked} = require('marked')
+
 //import routes
 const indexRouter = require('./routes/index.router');
 const createRouter = require('./routes/create.router');
@@ -11,16 +11,10 @@ const newPostRouter = require('./routes/new.post.router');
 const editRouter = require('./routes/edit.router');
 const getPostRouter = require('./routes/get.post.router');
 
-const html = marked.parse('# Marked in Node.js\n\nRendered by **marked**.');
-
-
-
+app.use(express.json());
 app.use(express.static('public'));
 app.set('view engine', 'hbs');
 
-app.listen(PORT, function () {
-  console.log(`server started on port: ${PORT}`);
-});
 
 app.get('/', indexRouter);
 app.get('/create', createRouter);
@@ -29,3 +23,7 @@ app.post('/delete/:id', deleteRouter);
 app.get('/edit/:id', editRouter);
 app.post('/edit', urlencodedParser, editRouter);
 app.get('/post/:id', getPostRouter);
+
+app.listen(PORT, function () {
+  console.log(`server started on port: ${PORT}`);
+});

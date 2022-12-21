@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 
+const SequelizeSlugify = require('sequelize-slugify');
+
 const sequelize = new Sequelize('postjs', 'postgres', 'kbi3234', {
   dialect: 'postgres',
   host: 'localhost',
@@ -27,6 +29,14 @@ const Post = sequelize.define('Post', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
+  slug: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+});
+
+SequelizeSlugify.slugifyModel(Post, {
+  source: ['title'],
 });
 
 sequelize
