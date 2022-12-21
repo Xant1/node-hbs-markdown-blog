@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const urlencodedParser = express.urlencoded({ extended: false });
 const PORT = 7777;
-
+const {marked} = require('marked')
 //import routes
 const indexRouter = require('./routes/index.router');
 const createRouter = require('./routes/create.router');
@@ -10,6 +10,10 @@ const deleteRouter = require('./routes/delete.router');
 const newPostRouter = require('./routes/new.post.router');
 const editRouter = require('./routes/edit.router');
 const getPostRouter = require('./routes/get.post.router');
+
+const html = marked.parse('# Marked in Node.js\n\nRendered by **marked**.');
+
+
 
 app.use(express.static('public'));
 app.set('view engine', 'hbs');

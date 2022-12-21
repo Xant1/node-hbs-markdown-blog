@@ -8,7 +8,7 @@ const sequelize = new Sequelize('postjs', 'postgres', 'kbi3234', {
   },
 });
 
-const Post = sequelize.define('post', {
+const Post = sequelize.define('Post', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -24,7 +24,7 @@ const Post = sequelize.define('post', {
     allowNull: false,
   },
   markdown: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
   },
 });
