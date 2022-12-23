@@ -6,17 +6,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    {{> header}}
     <h1 style="text-align:center" >Posts</h1>
     <p style="text-align:center; margin-top: 15px" >
         <a class="add-post-link" href="/create">Add Post</a>
     </p>
+    
     <div>
        {{#each posts}}
             <div>
                 <a href="/post/{{this.slug}}">
                     <div class="container">             
                     {{this.title}}
-                    {{this.description}}
                     <td>
                     <a class="edit-link" href="/edit/{{this.id}}">Edit</a>|
                     <form action="delete/{{this.id}}" method="POST" style="display:inline;">
@@ -28,5 +29,6 @@
             </div>                             
         {{/each}}
     </div>
+    {{> footer}}
 </body>
 <html>

@@ -3,6 +3,7 @@
 <head>
     <title>Editing</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <h1 class="post-h1">Editing</h1>
@@ -11,8 +12,6 @@
             <input required class="hidden-id" type="hidden" name="id" value="{{post.id}}" />
             <label>Title</label>
             <input name="title" class="post-title" value="{{post.title}}" />
-            <label>Description</label>
-            <textarea required name="description"  class="post-description">{{post.description}}</textarea>
             <label>Markdown</label>
             <textarea  wrap="soft" required name="markdown"  class="post-markdown">{{post.markdown}}</textarea>
             <button class="post-save" type="submit">Save</button>
@@ -20,70 +19,4 @@
         </div>
      </form>
 </body>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  background-color: #15202b;
-  color: #fff;
-}
-
-a {
-  text-decoration: none;
-}
-
-.post-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.post-h1 {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.post-title {
-  width: 1111px;
-  background-color: white;
-  color: black;
-  margin-bottom: 15px;
-  height: 33px;
-  font-size: 17px;
-}
-
-.post-description {
-  width: 1111px;
-  background-color: white;
-  color: black;
-  margin-bottom: 15px;
-  height: 77px;
-  font-size: 17px;
-}
-
-.post-markdown {
-  width: 1111px;
-  background-color: white;
-  color: black;
-  margin-bottom: 15px;
-  height: 555px;
-  font-size: 17px;
-}
-
-.post-save {
-  width: 55px;
-  background-color: rgb(0, 119, 255);
-  font-size: 17px;
-  cursor: pointer;
-}
-
-.post-cansel {
-  width: 55px;
-  background-color: rgb(102, 102, 100);
-  font-size: 17px;
-  cursor: pointer;
-}
-</style>
 <html>
