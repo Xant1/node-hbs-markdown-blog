@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const SequelizeSlugify = require('sequelize-slugify');
 
-const sequelize = new Sequelize('postjs', 'postgres', 'kbi3234', {
+const sequelize = new Sequelize('it-usta', 'xan', 'kbi3234', {
   dialect: 'postgres',
   host: 'localhost',
   define: {

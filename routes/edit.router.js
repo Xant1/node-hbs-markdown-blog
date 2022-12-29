@@ -1,8 +1,8 @@
 const express = require('express');
-const editController = require('../controllers/edit.controller');
+const postController = require('../controllers/post.controller');
 const editRouter = express.Router();
 
-editRouter.use('/edit/:id', editController.getEditPage);
-editRouter.use('/', editController.editPost)
+editRouter.use('/edit/:id', postController.getEditPage);
+editRouter.use('/', postController.editPost)
 
 module.exports = editRouter;

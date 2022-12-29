@@ -1,7 +1,7 @@
 const express = require('express');
+const postController = require('../controllers/post.controller');
 const deleteRouter = express.Router();
-const deleteController = require('../controllers/delete.controller');
 
-deleteRouter.use('/delete/:id', deleteController.deletePost);
+deleteRouter.use('/delete/:id', postController.deletePost);
 
 module.exports = deleteRouter;

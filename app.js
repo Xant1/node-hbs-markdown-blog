@@ -3,7 +3,7 @@ const app = express();
 const urlencodedParser = express.urlencoded({ extended: false });
 const PORT = 7777;
 const hbs = require('hbs');
-//import routes
+
 const indexRouter = require('./routes/index.router');
 const createRouter = require('./routes/create.router');
 const deleteRouter = require('./routes/delete.router');
@@ -13,8 +13,6 @@ const getPostRouter = require('./routes/get.post.router');
 
 app.use(express.json());
 app.use(express.static('public'));
-
-
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
