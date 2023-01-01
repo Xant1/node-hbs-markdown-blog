@@ -10,6 +10,7 @@ const deleteRouter = require('./routes/delete.router');
 const newPostRouter = require('./routes/new.post.router');
 const editRouter = require('./routes/edit.router');
 const getPostRouter = require('./routes/get.post.router');
+const authRouter = require('./routes/auth.router');
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -24,6 +25,7 @@ app.post('/delete/:id', deleteRouter);
 app.get('/edit/:id', editRouter);
 app.post('/edit', urlencodedParser, editRouter);
 app.get('/post/:id', getPostRouter);
+app.use('/auth', authRouter);
 
 app.listen(PORT, function () {
   console.log(`server started on port: ${PORT}`);
