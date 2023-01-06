@@ -1,1 +1,2 @@
+- blog on the mvc pattern
 - node.js, express.js, sequelize, postgresql, hbs, marked.js
