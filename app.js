@@ -1,7 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const urlencodedParser = express.urlencoded({ extended: false });
-const PORT = 7777;
+const PORT = process.env.PORT || 7777;
 const hbs = require('hbs');
 
 const indexRouter = require('./routes/index.router');
@@ -21,12 +22,12 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.get('/', indexRouter);
 app.get('/create', createRouter);
 app.post('/create', urlencodedParser, newPostRouter);
-app.post('/delete/:id', deleteRouter);
-app.get('/edit/:id', editRouter);
 app.post('/edit', urlencodedParser, editRouter);
+app.post('/delete/:id', urlencodedParser, deleteRouter);
+app.get('/edit/:id', editRouter);
 app.get('/post/:id', getPostRouter);
 app.use('/auth', authRouter);
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log(`server started on port: ${PORT}`);
 });
