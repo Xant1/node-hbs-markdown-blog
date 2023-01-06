@@ -1,1 +1,1 @@
-- KZ it portal 
+- node.js, express.js, sequelize, postgresql, hbs, marked.js
