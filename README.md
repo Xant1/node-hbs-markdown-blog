@@ -1,2 +1,2 @@
-- blog on the MVC pattern
+- markdown blog on the MVC pattern
 - node.js, express.js, sequelize, postgresql, hbs, marked.js
