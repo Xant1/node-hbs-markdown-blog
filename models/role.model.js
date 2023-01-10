@@ -21,4 +21,11 @@ const Role = sequelize.define('Role', {
   },
 });
 
+sequelize
+  .sync()
+  .then(() => {
+    console.log('sync complete');
+  })
+  .catch((err) => console.log(err));
+
 module.exports = Role;

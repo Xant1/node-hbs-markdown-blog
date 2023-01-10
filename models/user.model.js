@@ -29,4 +29,11 @@ const User = sequelize.define('User', {
   },
 });
 
+sequelize
+  .sync()
+  .then(() => {
+    console.log('sync complete');
+  })
+  .catch((err) => console.log(err));
+
 module.exports = User;

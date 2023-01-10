@@ -12,6 +12,10 @@ const generateAccessToken = (id, roles) => {
   return jwt.sign(payload, secret, { expiresIn: '24h' });
 };
 
+exports.getAuthPage = function (req, res) {
+  res.render('auth.hbs');
+};
+
 exports.registration = function (req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
