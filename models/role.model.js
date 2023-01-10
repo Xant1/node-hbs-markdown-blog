@@ -1,31 +1,30 @@
-const Sequelize = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
+const sequelize = require('../config/connection.js');
+
+class Role extends Model {}
+
+Role.init(
   {
-    dialect: 'postgres',
-    host: 'localhost',
-    define: {
-      timestamps: false,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
     },
+    value: {
+      type: DataTypes.STRING,
+      unique: true,
+      default: 'user',
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'role',
   }
 );
-
-const Role = sequelize.define('Role', {
-  value: {
-    type: Sequelize.STRING,
-    unique: true,
-    default: 'user',
-  },
-});
-
-sequelize
-  .sync()
-  .then(() => {
-    console.log('sync complete');
-  })
-  .catch((err) => console.log(err));
 
 module.exports = Role;

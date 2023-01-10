@@ -5,6 +5,8 @@ const domPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const purify = domPurify(new JSDOM().window);
 
+
+
 exports.getCreatePage = function (req, res) {
   res.render('create.hbs');
 };
