@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
+const hbs = require('hbs');
 
 const sequelize = require('./config/connection');
+const db = require("./models")
+const Role = db.role;
+
 const PORT = process.env.PORT || 7777;
-const hbs = require('hbs');
 
 const cors = require('cors');
 const corsOptions = {
-  // origin:"http://localhost:8081/jwtlogin" nb this is wrong
   origin: 'http://localhost:7779/',
 };
 
@@ -19,8 +21,7 @@ const editRouter = require('./routes/edit.router');
 const getPostRouter = require('./routes/get.post.router');
 const authRouter = require('./routes/auth.router');
 
-const db = require("./models")
-const Role = db.role;
+
 
 app.use(express.json());
 app.use(express.static('public'));
