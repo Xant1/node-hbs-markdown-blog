@@ -2,62 +2,82 @@ const User = require('../models/user.model');
 const Role = require('../models/role.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { validationResult } = require('express-validator');
+const db = require("../models")
+const config = require("../config/auth.config")
+const Op = db.Sequelize.Op;
 
-const generateAccessToken = (id, roles) => {
-  const payload = {
-    id,
-    roles,
-  };
-  return jwt.sign(payload, secret, { expiresIn: '24h' });
-};
+exports.getAuthPage = (req, res) => {
+  res.render('auth.hbs')
+}
 
-exports.getAuthPage = function (req, res) {
-  res.render('auth.hbs');
-};
-
-exports.registration = function (req, res) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ message: 'registration error', errors });
-  }
-  const { username, password } = req.body;
-  const candidate = User.findOne({ where: { username: username } })
-    .then((data) => {
-      if (data) {
-        return res
-          .status(400)
-          .json({ message: 'A user with this name already exists' });
-      }
-    })
-    .catch((err) => console.log(err));
-
-  const hashPassword = bcrypt.hashSync(password, 9);
-  const userRole = Role.findOne({ value: 'user' });
+exports.register = (req, res) => {
+  // Save new User to the database
   User.create({
-    username,
-    password: hashPassword,
-    roles: [userRole.value],
+    username: req.body.username,
+    password: bcrypt.hashSync(req.body.password,8)
   })
-    .then(() => {
-      res.json({ message: 'The user has been successfully registered' });
-    })
-    .catch((err) => console.log(err));
-};
-
-exports.login = function (req, res) {
-  const { username, password } = req.body;
-  const user = User.findOne({ where: { username: username } })
-    .then((data) => {
-      if (!data) {
-        return res.status(400).json({ message: 'User not found' });
+    .then(user => {
+      if (req.body.roles) {
+        Role.findAll({
+          where: {
+            name: {
+              [Op.or]: req.body.roles
+            }
+          }//end of 'where'
+        }).then(roles => {
+          user.setRoles(roles).then(() => {
+            res.send({ message: "User was registered successfully!" });
+          });
+        });
+      } else {
+        // if no Role specified, User is saved as 'User' by default
+        user.setRoles([1]).then(() => {
+          res.send({ message: "User was registered successfully!" });
+        });
       }
     })
-    .catch((err) => console.log(err));
-  const validPassword = bcrypt.compareSync(password, user.password);
-  if (!validPassword) {
-    return res.status(400).json({ message: 'invalid password or login' });
-  }
-  const token = generateAccessToken(user._id, user.roles);
-  return res.json({ token });
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+};
+exports.signin = (req, res) => {
+  User.findOne({
+    where: {
+        username: req.body.username
+    }
+  })
+    .then(user => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+      var passwordCorrect = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+      if (!passwordCorrect) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Incorrect password!"
+        });
+      }//if(passwordCorrect)
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400 // 24 hours
+      });
+      var permissions = [];
+      user.getRoles().then(roles => {
+        for (let i = 0; i < roles.length; i++) {
+            permissions.push("ROLE_" + roles[i].name.toUpperCase());
+        }
+        res.status(200).send({
+            id: user.id,
+            roles: permissions,
+            username: user.username,
+            accessToken: token
+        });
+      });
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+
 };

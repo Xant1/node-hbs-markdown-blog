@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dompurify": "^2.4.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -22,6 +23,7 @@
     "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
+    "postgres": "^3.3.3",
     "sequelize": "^6.25.6",
     "sequelize-slugify": "^1.6.2"
   }

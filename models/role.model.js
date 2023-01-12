@@ -8,14 +8,10 @@ Role.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       primaryKey: true,
-      allowNull: false,
     },
-    value: {
+    name: {
       type: DataTypes.STRING,
-      unique: true,
-      default: 'user',
     },
   },
   {

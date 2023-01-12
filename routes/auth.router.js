@@ -1,26 +1,13 @@
 const Router = require('express');
 const router = new Router();
 const authController = require('../controllers/auth.controller');
-const { check } = require('express-validator');
 
-router.get("/registration" , authController.getAuthPage)
+router.get('/registration', authController.getAuthPage);
 
+router.post('/registration', authController.register);
 
-router.post(
-  '/registration',
-  [
-    check('username', 'The user name cannot be empty').notEmpty(),
-    check(
-      'password',
-      'The password must be more than 5 and less than 15 characters'
-    ).isLength({ min: 5, max: 15 }),
-  ],
-  authController.registration
-);
+router.get('/login', authController.getAuthPage);
 
-router.get("/login" , authController.getAuthPage)
-
-router.post('/login', authController.login);
-//router.get('/users', roleMiddleware(["ADMIN"]), controller.getUsers)
+router.post('/login', authController.signin);
 
 module.exports = router;

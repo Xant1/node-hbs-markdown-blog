@@ -6,12 +6,6 @@ class User extends Model {}
 
 User.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      allowNull: false,
-    },
     username: {
       type: DataTypes.STRING,
       unique: true,
@@ -21,11 +15,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    /*roles: {
-      type: DataTypes.STRING,
-      references: 'Role',
-    },
-    */
   },
   {
     sequelize,
