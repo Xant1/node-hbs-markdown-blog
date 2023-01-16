@@ -1,2 +1,2 @@
-- markdown blog
-- node.js, express.js, sequelize, postgresql, hbs, marked.js
+- The markdown system was used in the development to add/edit content without additional tools
+- Node.js, Express.js, Sequelize, PostgreSQL, HBS, Marked.js
