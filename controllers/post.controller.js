@@ -1,11 +1,10 @@
-const Post = require('../models/post.model');
-
+const uuid = require('uuid');
+const path = require('path');
 const { marked } = require('marked');
 const domPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const purify = domPurify(new JSDOM().window);
-
-
+const Post = require('../models/post.model');
 
 exports.getCreatePage = function (req, res) {
   res.render('create.hbs');
@@ -17,17 +16,20 @@ exports.createNewPost = function (req, res) {
   const postTitle = req.body.title;
   const postDescription = req.body.description;
   const postMarkdown = req.body.markdown;
+  const  {img}  = req.files;
+  let fileName = uuid.v4() + '.jpg';
+  img.mv(path.resolve(__dirname, '..', 'static', fileName));
   Post.create({
     title: postTitle,
     description: postDescription,
     markdown: postMarkdown,
+    img: fileName,
   })
     .then(() => {
       res.redirect('/');
     })
     .catch((err) => console.log(err));
 };
-
 
 exports.getAllPosts = function (req, res) {
   Post.findAll({ raw: true })
@@ -40,7 +42,7 @@ exports.getAllPosts = function (req, res) {
 };
 
 exports.getPost = function (req, res) {
-  const post = Post.findOne({ where: { slug: req.params.slug } })
+  Post.findOne({ where: { slug: req.params.slug } })
     .then((data) => {
       if (!data) res.redirect('/');
       if (data.markdown) {
@@ -76,7 +78,6 @@ exports.editPost = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-
 
 exports.deletePost = function (req, res) {
   const postid = req.params.id;

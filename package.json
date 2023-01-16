@@ -15,6 +15,7 @@
     "dompurify": "^2.4.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
     "express-validator": "^6.14.2",
     "hbs": "^4.2.0",
     "jsdom": "^20.0.3",
@@ -25,6 +26,7 @@
     "pg-hstore": "^2.3.4",
     "postgres": "^3.3.3",
     "sequelize": "^6.25.6",
-    "sequelize-slugify": "^1.6.2"
+    "sequelize-slugify": "^1.6.2",
+    "uuid": "^9.0.0"
   }
 }

@@ -2,16 +2,17 @@ const express = require('express');
 const app = express();
 const hbs = require('hbs');
 
-const sequelize = require('./config/connection');
-const db = require("./models")
+const db = require('./models');
 const Role = db.role;
 
-const PORT = process.env.PORT || 7777;
-
+const fileUpload = require('express-fileupload');
+const path = require('path')
 const cors = require('cors');
 const corsOptions = {
   origin: 'http://localhost:7779/',
 };
+
+const PORT = process.env.PORT || 7777;
 
 const indexRouter = require('./routes/index.router');
 const createRouter = require('./routes/create.router');
@@ -21,10 +22,11 @@ const editRouter = require('./routes/edit.router');
 const getPostRouter = require('./routes/get.post.router');
 const authRouter = require('./routes/auth.router');
 
-
-
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static('public'));
+app.use(express.static(path.resolve(__dirname, 'static')));
+app.use(fileUpload({}));
 app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -38,7 +40,6 @@ app.get('/edit/:id', editRouter);
 app.get('/post/:id', getPostRouter);
 app.use('/auth', authRouter);
 
-app.use(cors(corsOptions));
 app.use(function (req, res, next) {
   res.header(
     'Access-Control-Allow-Headers',
@@ -47,8 +48,17 @@ app.use(function (req, res, next) {
   next();
 });
 
-sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
+// db.sequelize
+//   .sync()
+//   .then(() => {
+//     app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+//   })
+//   .catch((e) => console.log(e));
+
+// uncomment the code below if you launching the program for the first time and have no data saved in the database
+
+db.sequelize.sync({ force: true }).then(() => {
+  app.listen(PORT, () => console.log(`Drop and Resync database`));
   initial();
 });
 

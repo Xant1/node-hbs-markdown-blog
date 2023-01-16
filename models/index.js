@@ -20,6 +20,7 @@ db.user.belongsToMany(db.role, {
   foreignKey: 'userId',
   otherKey: 'roleId',
   as: 'roles',
+  
 });
 
 db.ROLES = ['user', 'editor', 'admin'];
