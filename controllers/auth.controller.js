@@ -11,7 +11,6 @@ exports.getAuthPage = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  // Save new User to the database
   User.create({
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, 9),
@@ -23,7 +22,7 @@ exports.register = (req, res) => {
             name: {
               [Op.or]: req.body.roles,
             },
-          }, //end of 'where'
+          },
         }).then((roles) => {
           user.setRoles(roles).then(() => {
             res.send({ message: 'User was registered successfully!' });
@@ -60,9 +59,9 @@ exports.signin = (req, res) => {
           accessToken: null,
           message: 'Incorrect password!',
         });
-      } //if(passwordCorrect)
+      }
       const token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400, // 24 hours
+        expiresIn: 86400,
       });
       const permissions = [];
       user.getRoles().then((roles) => {
@@ -81,5 +80,3 @@ exports.signin = (req, res) => {
       res.status(500).send({ message: err.message });
     });
 };
-
-

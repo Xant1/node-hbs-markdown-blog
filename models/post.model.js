@@ -22,8 +22,8 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    img: {
-      type: DataTypes.STRING,
+    description: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     slug: {

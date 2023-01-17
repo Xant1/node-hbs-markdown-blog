@@ -7,16 +7,39 @@
 </head>
 <body>
     <h1 class="post-h1">Editing</h1>
-     <form action="/edit" method="POST">
-        <div class="post-container">
-            <input required class="hidden-id" type="hidden" name="id" value="{{post.id}}" />
-            <label>Title</label>
-            <input name="title" class="post-title" value="{{post.title}}" />
-            <label>Markdown</label>
-            <textarea  wrap="soft" required name="markdown"  class="post-markdown">{{post.markdown}}</textarea>
-            <button class="post-save" type="submit">Save</button>
-            <button class="post-cansel"><a class="post-cansel" href="/">Cansel</a></button> 
+        <div class="create-container">
+            <form action="/edit" method="POST">
+                <input required class="hidden-id" type="hidden" name="id" value="{{post.id}}" />
+                <div class="row">
+                    <div class="create-col1">
+                        <label>Title</label>
+                    </div>
+                    <div class="create-col2">
+                        <input type="text" required name="title" value="{{post.title}}" />
+                    </div>                
+                </div>
+                <div class="row">
+                    <div class="create-col1">
+                        <label>Description</label>
+                    </div>
+                    <div class="create-col2">
+                        <textarea  required name="description"  style="height:100px">{{post.description}}</textarea>
+                    </div>                
+                </div>  
+                <div class="row">
+                    <div class="create-col1">
+                        <label>Markdown</label>
+                    </div>
+                    <div class="create-col2">
+                        <textarea id="main-content" required name="markdown"  style="height:350px" >{{post.markdown}}</textarea>
+                    </div>                
+                </div>
+                <br>
+                <div class="row">
+                    <input type="submit"></input>
+                    <button class="create-button"><a class="create-cansel" href="/">Cansel</a> </button>                       
+                </div>                                                            
+            </form>
         </div>
-     </form>
 </body>
 <html>

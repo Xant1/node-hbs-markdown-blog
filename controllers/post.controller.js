@@ -1,5 +1,3 @@
-const uuid = require('uuid');
-const path = require('path');
 const { marked } = require('marked');
 const domPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
@@ -16,14 +14,10 @@ exports.createNewPost = function (req, res) {
   const postTitle = req.body.title;
   const postDescription = req.body.description;
   const postMarkdown = req.body.markdown;
-  const  {img}  = req.files;
-  let fileName = uuid.v4() + '.jpg';
-  img.mv(path.resolve(__dirname, '..', 'static', fileName));
   Post.create({
     title: postTitle,
     description: postDescription,
     markdown: postMarkdown,
-    img: fileName,
   })
     .then(() => {
       res.redirect('/');
@@ -87,3 +81,4 @@ exports.deletePost = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
+

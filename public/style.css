@@ -5,61 +5,87 @@ a {
 }
 
 /* create-post-styles */
-.post-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.post-h1 {
+.create-h1 {
   text-align: center;
   margin-bottom: 15px;
 }
 
-.post-title {
-  width: 1111px;
-  background-color: white;
-  color: black;
-  margin-bottom: 15px;
-  height: 33px;
-  font-size: 17px;
+input[type='text'],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
 }
 
-.post-description {
-  width: 1111px;
-  background-color: white;
-  color: black;
-  margin-bottom: 15px;
-  height: 77px;
-  font-size: 17px;
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
 }
 
-.post-markdown {
-  width: 1111px;
-  background-color: white;
-  color: black;
-  margin-bottom: 15px;
-  height: 555px;
-  font-size: 17px;
-}
-
-.post-save {
-  width: 55px;
-  background-color: rgb(0, 119, 255);
-  font-size: 17px;
+input[type='submit'] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  float: right;
 }
 
-.post-cansel {
-  width: 55px;
-  background-color: rgb(102, 102, 100);
-  font-size: 17px;
+input[type='submit']:hover {
+  background-color: #45a049;
+}
+
+button .create-cansel {
+  background-color: #484949;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  float: left;
+}
+
+button .create-cansel:hover {
+  background-color: #6b6b6b;
+}
+
+.create-container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-1 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-2 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
 }
 
 /*content-container-styles*/
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -86,14 +112,38 @@ a {
   font-size: 19px;
 }
 
-.edit-link {
-  background-color: rgb(7, 91, 160);
+.btn-group button {
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
 }
 
-.delete-button {
-  background-color: red;
-  font-size: 15px;
-  cursor: pointer;
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.read-btn {
+  background-color: #4caf50;
+  border: 1px solid black
+}
+
+.edit-btn {
+  background-color: #008cba;
+  border: 1px solid black
+}
+
+.delete-btn {
+  background-color: #f44336;
+  border: 1px solid black
 }
 
 .add-post-link {
@@ -142,7 +192,6 @@ html {
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
 }
 
 /* Change color on hover */
@@ -189,5 +238,11 @@ html {
   .column.side,
   .column.middle {
     width: 100%;
+  }
+  .col-1,
+  .col-2,
+  button[type='submit'] {
+    width: 100%;
+    margin-top: 0;
   }
 }
