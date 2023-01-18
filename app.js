@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
 const hbs = require('hbs');
-const multer = require('multer')
+const multer = require('multer');
 
 const db = require('./models');
+const initial = require('./utils/initial');
 
 const PORT = process.env.PORT || 7777;
 const cors = require('cors');
 const corsOptions = {
-  origin: 'http://localhost:7779/',
+    origin: 'http://localhost:7779/',
 };
 
 const indexRouter = require('./routes/index.router');
@@ -21,9 +22,9 @@ const authRouter = require('./routes/auth.router');
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.static('public'))
-app.use(express.static(__dirname))
-app.use(multer({dest:"uploads"}).single("image"))
+app.use(express.static('public'));
+app.use(express.static(__dirname));
+app.use(multer({ dest: 'uploads' }).single('image'));
 app.use(express.urlencoded({ extended: false }));
 
 app.set('view engine', 'hbs');
@@ -39,19 +40,19 @@ app.get('/post/:id', getPostRouter);
 app.use('/auth', authRouter);
 
 app.use(function (req, res, next) {
-  res.header(
-    'Access-Control-Allow-Headers',
-    'x-access-token, Origin, Content-Type, Accept'
-  );
-  next();
+    res.header(
+        'Access-Control-Allow-Headers',
+        'x-access-token, Origin, Content-Type, Accept'
+    );
+    next();
 });
 
 db.sequelize
-  .sync()
-  .then(() => {
-    app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
-  })
-  .catch((e) => console.log(e));
+    .sync()
+    .then(() => {
+        app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+    })
+    .catch((e) => console.log(e));
 
 // uncomment the code below if you launching the program for the first time and have no data saved in the database
 
@@ -59,22 +60,3 @@ db.sequelize
 //   app.listen(PORT, () => console.log(`Drop and Resync database`));
 //   initial();
 // });
-
-// const Role = db.role;
-
-// function initial() {
-//   Role.create({
-//     id: 1,
-//     name: 'user',
-//   });
-
-//   Role.create({
-//     id: 2,
-//     name: 'editor',
-//   });
-
-//   Role.create({
-//     id: 3,
-//     name: 'admin',
-//   });
-// }

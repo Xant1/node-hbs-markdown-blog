@@ -8,9 +8,9 @@
 <body>
     {{> header}}
     <h1 style="text-align:center" >Posts</h1>
-    <p style="text-align:center; margin-top: 15px" >
-        <a class="add-post-link" href="/create">Add Post</a>
-    </p>
+    <div style="text-align:center; margin-top: 15px" >
+<button class="create-button"><a class="add-post-btn" href="/create">Add Post</a> </button>
+    </div>
     <div class='column side'>
         <h2>Side</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -29,12 +29,10 @@
     <div class="column middle">    
         {{#each posts}}
             <div class="row">
-                <div class="column">
-                    <div style="width: 25px;">
-                        <img src="{{this.image}}" alt="image">
-                        <h2>{{this.title}}</h2><br>
-                        <p>{{this.description}}</p>
-                    </div>                    
+                <div class="column-main">
+                        <img style="height: 200px; " width="100%" src="{{this.image}}" alt="image">
+                        <h1>{{this.title}}</h1><br>
+                        <p>{{this.description}}</p><br>                                                       
                     <div class="btn-group" style="width:100%">
                         <button class="read-btn" style="width:33.3%"><a class="read-more" href="/post/{{this.slug}}">Read</a></button>
                         <button class="edit-btn" style="width:33.3%"><a class="edit-link" href="/edit/{{this.id}}">Edit</a></button>                                    

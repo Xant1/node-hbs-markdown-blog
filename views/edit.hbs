@@ -8,8 +8,10 @@
 <body>
     <h1 class="post-h1">Editing</h1>
         <div class="create-container">
-            <form action="/edit" method="POST">
+            <form action="/edit" method="POST" enctype="multipart/form-data" >
                 <input required class="hidden-id" type="hidden" name="id" value="{{post.id}}" />
+                <label>file</label>
+                <input required type="file" name="image" ><br>
                 <div class="row">
                     <div class="create-col1">
                         <label>Title</label>

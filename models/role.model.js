@@ -5,19 +5,19 @@ const sequelize = require('../config/connection.js');
 class Role extends Model {}
 
 Role.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+        },
+        name: {
+            type: DataTypes.STRING,
+        },
     },
-    name: {
-      type: DataTypes.STRING,
-    },
-  },
-  {
-    sequelize,
-    modelName: 'role',
-  }
+    {
+        sequelize,
+        modelName: 'role',
+    }
 );
 
 module.exports = Role;

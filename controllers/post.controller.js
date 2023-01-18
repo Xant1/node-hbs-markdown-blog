@@ -3,7 +3,7 @@ const domPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const purify = domPurify(new JSDOM().window);
 const Post = require('../models/post.model');
-const path = require('path')
+const path = require('path');
 exports.getCreatePage = function (req, res) {
   res.render('create.hbs');
 };
@@ -66,8 +66,14 @@ exports.editPost = function (req, res) {
   const postDescription = req.body.description;
   const postMarkdown = req.body.markdown;
   const postid = req.body.id;
+  let filedata = req.file.path;
   Post.update(
-    { title: postTitle, description: postDescription, markdown: postMarkdown },
+    {
+      image: filedata,
+      title: postTitle,
+      description: postDescription,
+      markdown: postMarkdown,
+    },
     { where: { id: postid } }
   )
     .then(() => {
