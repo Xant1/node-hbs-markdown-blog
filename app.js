@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const hbs = require('hbs');
+const multer = require('multer')
 
 const db = require('./models');
-const Role = db.role;
 
 const PORT = process.env.PORT || 7777;
 const cors = require('cors');
@@ -22,6 +22,8 @@ const authRouter = require('./routes/auth.router');
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static('public'))
+app.use(express.static(__dirname))
+app.use(multer({dest:"uploads"}).single("image"))
 app.use(express.urlencoded({ extended: false }));
 
 app.set('view engine', 'hbs');
@@ -44,33 +46,35 @@ app.use(function (req, res, next) {
   next();
 });
 
-// db.sequelize
-//   .sync()
-//   .then(() => {
-//     app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
-//   })
-//   .catch((e) => console.log(e));
+db.sequelize
+  .sync()
+  .then(() => {
+    app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+  })
+  .catch((e) => console.log(e));
 
 // uncomment the code below if you launching the program for the first time and have no data saved in the database
 
-db.sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => console.log(`Drop and Resync database`));
-  initial();
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   app.listen(PORT, () => console.log(`Drop and Resync database`));
+//   initial();
+// });
 
-function initial() {
-  Role.create({
-    id: 1,
-    name: 'user',
-  });
+// const Role = db.role;
 
-  Role.create({
-    id: 2,
-    name: 'editor',
-  });
+// function initial() {
+//   Role.create({
+//     id: 1,
+//     name: 'user',
+//   });
 
-  Role.create({
-    id: 3,
-    name: 'admin',
-  });
-}
+//   Role.create({
+//     id: 2,
+//     name: 'editor',
+//   });
+
+//   Role.create({
+//     id: 3,
+//     name: 'admin',
+//   });
+// }

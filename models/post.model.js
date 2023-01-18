@@ -26,6 +26,10 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.BLOB('long'),
+      allowNull: false
+    },
     slug: {
       type: DataTypes.STRING,
       unique: true,

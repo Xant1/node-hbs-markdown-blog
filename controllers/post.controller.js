@@ -3,7 +3,7 @@ const domPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const purify = domPurify(new JSDOM().window);
 const Post = require('../models/post.model');
-
+const path = require('path')
 exports.getCreatePage = function (req, res) {
   res.render('create.hbs');
 };
@@ -14,10 +14,13 @@ exports.createNewPost = function (req, res) {
   const postTitle = req.body.title;
   const postDescription = req.body.description;
   const postMarkdown = req.body.markdown;
+  let filedata = req.file.path;
+  console.log(filedata);
   Post.create({
     title: postTitle,
     description: postDescription,
     markdown: postMarkdown,
+    image: filedata,
   })
     .then(() => {
       res.redirect('/');
@@ -81,4 +84,3 @@ exports.deletePost = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-
