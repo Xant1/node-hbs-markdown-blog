@@ -4,6 +4,7 @@ const { JSDOM } = require('jsdom');
 const purify = domPurify(new JSDOM().window);
 const Post = require('../models/post.model');
 const path = require('path');
+
 exports.getCreatePage = function (req, res) {
   res.render('create.hbs');
 };
