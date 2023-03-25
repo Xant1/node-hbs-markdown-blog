@@ -27,5 +27,8 @@
     "postgres": "^3.3.3",
     "sequelize": "^6.29.3",
     "sequelize-slugify": "^1.6.2"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.0"
   }
 }
