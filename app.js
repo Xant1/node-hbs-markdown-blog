@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const hbs = require('hbs');
 const multer = require('multer');
+const path = require('path');
 
 const db = require('./models');
 const initial = require('./utils/initial');
@@ -23,16 +24,16 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.use('/', postRouter);
 app.use('/auth', authRouter);
 
-db.sequelize
-    .sync()
-    .then(() => {
-        app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
-    })
-    .catch((e) => console.log(e));
+const start = async () => {
+  try {
+    await db.sequelize.authenticate();
+    await db.sequelize.sync();
+    app.listen(PORT, () => console.log(`Server started on port : ${PORT}`));
+    // uncomment this function if you want to add fake music dates for DB
+    //initial()
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-// uncomment the code below if you launching the program for the first time and have no data saved in the database
-
-// db.sequelize.sync({ force: true }).then(() => {
-//   app.listen(PORT, () => console.log(`Drop and Resync database`));
-//   initial();
-// });
+start().then();
