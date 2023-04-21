@@ -16,7 +16,7 @@ exports.createNewPost = function (req, res) {
   const postDescription = req.body.description;
   const postMarkdown = req.body.markdown;
   let filedata = req.file.path;
-  console.log(filedata);
+  
   Post.create({
     title: postTitle,
     description: postDescription,
